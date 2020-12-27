@@ -5,6 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+set(ASIO_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/asio-1.18.0")
+find_package(ASIO REQUIRED)
+include_directories(${ASIO_INCLUDE_DIR})
+
 add_subdirectory(base)
 add_subdirectory(client)
 add_subdirectory(server)
