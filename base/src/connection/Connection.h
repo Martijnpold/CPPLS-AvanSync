@@ -18,6 +18,8 @@ namespace avansync {
 
         [[nodiscard]] IO &getIO() const override;
 
-        void close() override;;
+        void close() const override;
+
+        [[nodiscard]] bool isOpen() const override;
     };
 }

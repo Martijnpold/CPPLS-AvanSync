@@ -6,12 +6,14 @@
 namespace avansync {
     class IO {
     public:
-        virtual std::string readLine() = 0;
+        virtual ~IO() = default;
 
-        virtual void writeLine(std::string data) = 0;
+        [[nodiscard]] virtual std::string readLine() const = 0;
 
-        virtual void readFile(std::string path, int bytes) = 0;
+        virtual void writeLine(const std::string &data) const = 0;
 
-        virtual void writeFile(std::string path) = 0;
+        virtual void readFile(const std::string &path, int bytes) const = 0;
+
+        virtual void writeFile(const std::string &path) const = 0;
     };
 }

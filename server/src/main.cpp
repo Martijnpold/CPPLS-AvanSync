@@ -1,43 +1,45 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include <stdexcept>
 #include <asio.hpp>
+#include "../../base/src/command/CommandRepository.h"
+#include "command/ServerCommandRepository.h"
+#include "../../base/src/connection/Connection.h"
+#include "../../base/src/buffer/SystemIO.h"
+
+using namespace asio::ip;
+using namespace avansync;
 
 int main() {
     try {
-        const int server_port{ 12345 };
-        const char* lf{ "\n" };
-        const char* crlf{ "\r\n" };
+        const int server_port{12345};
+
+        CommandRepository commands = ServerCommandRepository{};
+        SystemIO systemIO{};
 
         asio::io_context io_context;
-        asio::ip::tcp::acceptor server{ io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port) };
+        asio::ip::tcp::acceptor server{io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port)};
 
         for (;;) {
             std::cerr << "waiting for client to connect\n";
-            asio::ip::tcp::iostream client;
-            server.accept(client.socket());
-            std::cerr << "client connected from " << client.socket().local_endpoint() << std::endl;
-            client << "Welcome to AvanSync server 1.0" << crlf;
-            for (;;) {
-                std::string request;
-                getline(client, request);
-                request.erase(request.end() - 1); // remove '\r'
-                std::cerr << "client says: " << request << std::endl;
+            auto client = std::make_unique<tcp::iostream>();
+            server.accept(client->socket());
+            std::cerr << "client connected from " << client->socket().local_endpoint() << std::endl;
 
-                if (request == "quit") {
-                    client << "Bye." << crlf;
-                    std::cerr << "will disconnect from client " << client.socket().local_endpoint() << std::endl;
-                    break;
-                }
-                else {
-                    client << request << crlf; // simply echo the request
+            Connection connection{client};
+            connection.getIO().writeLine("Welcome to AvanSync server 1.0");
+
+            for (;;) {
+                std::string request = connection.getIO().readLine();
+                systemIO.writeLine("Received request " + request);
+
+                if(commands.hasCommand(request)) {
+                    commands.execute(request, systemIO, connection);
                 }
             }
         }
-
     }
-    catch (const std::exception& ex) {
+    catch (const std::exception &ex) {
         std::cerr << "server: " << ex.what() << '\n';
         return EXIT_FAILURE;
     }

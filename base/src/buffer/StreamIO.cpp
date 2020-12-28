@@ -3,17 +3,18 @@
 #include "StreamIO.h"
 
 namespace avansync {
-    std::string StreamIO::readLine() {
+    std::string StreamIO::readLine() const {
         std::string data;
         getline(_stream, data);
+        data.erase(data.end() - 1);
         return data;
     }
 
-    void StreamIO::writeLine(std::string data) {
-        _stream.write(data.c_str(), data.length());
+    void StreamIO::writeLine(const std::string &data) const {
+        _stream << data << LINE_BREAK;
     }
 
-    void StreamIO::readFile(std::string path, int bytes) {
+    void StreamIO::readFile(const std::string &path, int bytes) const {
         std::ofstream file{path};
         try {
             std::vector<char> buff(bytes, 0);
@@ -26,7 +27,7 @@ namespace avansync {
         }
     }
 
-    void StreamIO::writeFile(std::string path) {
+    void StreamIO::writeFile(const std::string &path) const {
         uintmax_t fileSize{std::filesystem::file_size(path)};
         std::ifstream file{path};
         try {
