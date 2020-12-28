@@ -1,2 +1,2 @@
-add_library(base_lib SHARED test.cpp)
+add_library(base_lib SHARED connection/Connection.cpp connection/Connection.h buffer/IO.h connection/IConnection.h buffer/StreamIO.cpp buffer/StreamIO.h)
 target_include_directories(base_lib PUBLIC src)

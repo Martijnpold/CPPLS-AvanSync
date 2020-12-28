@@ -17,17 +17,17 @@ int main() {
             std::cerr << "waiting for client to connect\n";
             asio::ip::tcp::iostream client;
             server.accept(client.socket());
-            std::cerr << "client connected from " << client.socket().local_endpoint() << lf;
+            std::cerr << "client connected from " << client.socket().local_endpoint() << std::endl;
             client << "Welcome to AvanSync server 1.0" << crlf;
             for (;;) {
                 std::string request;
                 getline(client, request);
                 request.erase(request.end() - 1); // remove '\r'
-                std::cerr << "client says: " << request << lf;
+                std::cerr << "client says: " << request << std::endl;
 
                 if (request == "quit") {
                     client << "Bye." << crlf;
-                    std::cerr << "will disconnect from client " << client.socket().local_endpoint() << lf;
+                    std::cerr << "will disconnect from client " << client.socket().local_endpoint() << std::endl;
                     break;
                 }
                 else {
