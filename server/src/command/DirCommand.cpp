@@ -1,17 +1,22 @@
 #include "DirCommand.h"
 
+namespace fs = std::filesystem;
+
 namespace avansync {
-    void DirCommand::execute(const avansync::IO &systemIO, const avansync::IConnection &connection) const {
-        std::string path{connection.getIO().readLine()};
+    void DirCommand::execute(const IO &systemIO, const IConnection &connection) const {
+        std::string path{"./storage/" + connection.getIO().readLine().getContent()};
 
-        std::vector<std::string> hashes{};
-        for (const auto &file : std::filesystem::directory_iterator(path)) hashes.push_back(toHash(file));
+        try {
+            std::vector<std::string> hashes{};
+            for (const auto &file : fs::directory_iterator(path)) hashes.push_back(toHash(file));
 
-        connection.getIO().writeLine(std::to_string(hashes.size()));
-        for (const auto &hash : hashes) connection.getIO().writeLine(hash);
+            connection.getIO().writeString(std::to_string(hashes.size()));
+            for (const auto &hash : hashes) connection.getIO().writeString(hash);
+        } catch (const fs::filesystem_error &e) {
+        }
     }
 
-    std::string DirCommand::toHash(const std::filesystem::directory_entry &file) const {
+    std::string DirCommand::toHash(const fs::directory_entry &file) const {
         std::stringstream hash;
         if (file.is_regular_file()) hash << "F";
         if (file.is_directory()) hash << "D";

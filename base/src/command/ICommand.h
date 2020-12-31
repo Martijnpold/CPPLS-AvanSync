@@ -8,6 +8,6 @@ namespace avansync {
     public:
         virtual ~ICommand() = default;
 
-        virtual void execute(const IO& systemIO, const IConnection& connection) const = 0;
+        virtual void execute(const IO &systemIO, const IConnection &connection) const = 0;
     };
 }

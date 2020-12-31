@@ -3,9 +3,10 @@
 #include <string>
 #include <stdexcept>
 #include <asio.hpp>
-#include "../../base/src/connection/Connection.h"
-#include "../../base/src/buffer/SystemIO.h"
-#include "../../base/src/command/CommandRepository.h"
+#include <connection/Connection.h>
+#include <buffer/SystemIO.h>
+#include <command/CommandRepository.h>
+#include <util/ErrorUtil.h>
 #include "command/ClientCommandRepository.h"
 
 using namespace avansync;
@@ -22,15 +23,21 @@ int main() {
 
         auto server = std::make_unique<tcp::iostream>(server_address, server_port);
         if (!server) throw std::runtime_error("could not connect to server");
-        Connection connection {server};
+        Connection connection{server};
         systemIO.writeLine(connection.getIO().readLine());
 
         while (connection.isOpen()) {
             std::cout << prompt;
-            std::string command = systemIO.readLine();
+            std::string command = systemIO.readLine().getContent();
 
-            if (commands.hasCommand(command)) {
-                commands.execute(command, systemIO, connection);
+            try {
+                if (commands.hasCommand(command)) {
+                    commands.execute(command, systemIO, connection);
+                }
+            } catch (const std::system_error &e) {
+                systemIO.writeException(std::logic_error{ErrorUtil::getReason(e)});
+            } catch (const std::exception &e) {
+                systemIO.writeException(e);
             }
         }
     }

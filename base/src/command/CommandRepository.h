@@ -11,7 +11,7 @@ namespace avansync {
 
     public:
         template<typename Command, typename... Args>
-        void registerCommand(const std::string &command, Args &&... args) {
+        void registerCommand(const std::string &command, const Args &&... args) {
             _commands[command] = std::make_unique<Command>(args...);
         }
 

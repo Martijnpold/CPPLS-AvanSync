@@ -1,11 +1,17 @@
 #include "DirCommand.h"
 
 namespace avansync {
-    void DirCommand::execute(const avansync::IO &systemIO, const avansync::IConnection &connection) const {
-        connection.getIO().writeLine("DIR");
+    void DirCommand::execute(const IO &systemIO, const IConnection &connection) const {
+        connection.getIO().writeString("DIR");
         connection.getIO().writeLine(systemIO.readLine());
 
-        int count = std::stoi(connection.getIO().readLine());
+        Line response{connection.getIO().readLine()};
+        if (response.isError()) {
+            systemIO.writeLine(response);
+            return;
+        }
+
+        int count = std::stoi(response.getContent());
         for (int i = 0; i < count; i++) {
             systemIO.writeLine(connection.getIO().readLine());
         }

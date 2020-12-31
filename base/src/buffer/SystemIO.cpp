@@ -4,13 +4,13 @@
 #include <iostream>
 
 namespace avansync {
-    std::string SystemIO::readLine() const {
+    Line SystemIO::readLine() const {
         std::string req;
         getline(std::cin, req);
-        return req;
+        return Line{req};
     }
 
-    void SystemIO::writeLine(const std::string &data) const {
+    void SystemIO::writeLine(const Line &data) const {
         std::cout << data << std::endl;
     }
 

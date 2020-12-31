@@ -2,10 +2,11 @@
 #include <cstdlib>
 #include <string>
 #include <asio.hpp>
-#include "../../base/src/command/CommandRepository.h"
+#include <command/CommandRepository.h>
 #include "command/ServerCommandRepository.h"
-#include "../../base/src/connection/Connection.h"
-#include "../../base/src/buffer/SystemIO.h"
+#include <connection/Connection.h>
+#include <buffer/SystemIO.h>
+#include <util/ErrorUtil.h>
 
 using namespace asio::ip;
 using namespace avansync;
@@ -27,14 +28,20 @@ int main() {
             std::cerr << "client connected from " << client->socket().local_endpoint() << std::endl;
 
             Connection connection{client};
-            connection.getIO().writeLine("Welcome to AvanSync server 1.0");
+            connection.getIO().writeString("Welcome to AvanSync server 1.0");
 
             for (;;) {
-                std::string request = connection.getIO().readLine();
-                systemIO.writeLine("Received request " + request);
+                Line request = connection.getIO().readLine();
+                systemIO.writeLine(request);
 
-                if(commands.hasCommand(request)) {
-                    commands.execute(request, systemIO, connection);
+                try {
+                    if (commands.hasCommand(request.getContent())) {
+                        commands.execute(request.getContent(), systemIO, connection);
+                    }
+                } catch (const std::system_error &e) {
+                    systemIO.writeException(std::logic_error{ErrorUtil::getReason(e)});
+                } catch (const std::exception &e) {
+                    systemIO.writeException(e);
                 }
             }
         }

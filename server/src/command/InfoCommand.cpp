@@ -2,6 +2,6 @@
 
 namespace avansync {
     void InfoCommand::execute(const avansync::IO &systemIO, const avansync::IConnection &connection) const {
-        connection.getIO().writeLine("AvanSync server 1.0, copyright (c) 2020 Martijn Polderman.");
+        connection.getIO().writeString("AvanSync server 1.0, copyright (c) 2020 Martijn Polderman.");
     }
 }

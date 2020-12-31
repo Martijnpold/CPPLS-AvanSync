@@ -3,14 +3,14 @@
 #include "StreamIO.h"
 
 namespace avansync {
-    std::string StreamIO::readLine() const {
+    Line StreamIO::readLine() const {
         std::string data;
         getline(_stream, data);
         data.erase(data.end() - 1);
-        return data;
+        return Line{data};
     }
 
-    void StreamIO::writeLine(const std::string &data) const {
+    void StreamIO::writeLine(const Line &data) const {
         _stream << data << LINE_BREAK;
     }
 

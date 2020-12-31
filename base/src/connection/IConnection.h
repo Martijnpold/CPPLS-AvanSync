@@ -8,7 +8,7 @@ namespace avansync {
     public:
         virtual ~IConnection() = default;
 
-        [[nodiscard]] virtual IO& getIO() const = 0;
+        [[nodiscard]] virtual IO &getIO() const = 0;
 
         virtual void close() const = 0;
 

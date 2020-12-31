@@ -1,7 +1,7 @@
 #pragma once
 
 #include <filesystem>
-#include "../../../base/src/command/ICommand.h"
+#include <command/ICommand.h>
 
 namespace avansync {
     class DirCommand : public ICommand {

@@ -15,9 +15,9 @@ namespace avansync {
     public:
         explicit StreamIO(tcp::iostream &stream) : _stream{stream} {};
 
-        [[nodiscard]] std::string readLine() const override;
+        [[nodiscard]] Line readLine() const override;
 
-        void writeLine(const std::string &data) const override;
+        void writeLine(const Line &data) const override;
 
         void readFile(const std::string &path, int bytes) const override;
 
