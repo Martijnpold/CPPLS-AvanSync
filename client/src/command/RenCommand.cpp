@@ -1,7 +1,7 @@
 #include "RenCommand.h"
 
 namespace avansync {
-    void RenCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void RenCommand::execute(IO& systemIO, IConnection& connection) const {
         connection.getIO().writeString("REN");
         connection.getIO().writeString(systemIO.readLine().getContent());
         connection.getIO().writeString(systemIO.readLine().getContent());

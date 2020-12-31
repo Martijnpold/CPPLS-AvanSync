@@ -3,7 +3,7 @@
 #include <util/ErrorUtil.h>
 
 namespace avansync {
-    void PutCommand::execute(const avansync::IO& systemIO, IConnection& connection) const {
+    void PutCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             std::string path {"./storage/" + connection.getIO().readLine().getContent()};
             int fileSize {std::stoi(connection.getIO().readLine().getContent())};

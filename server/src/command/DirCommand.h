@@ -6,7 +6,7 @@
 namespace avansync {
     class DirCommand : public ICommand {
     public:
-        void execute(const IO& systemIO, IConnection& connection) const override;
+        void execute(IO& systemIO, IConnection& connection) const override;
 
     private:
         [[nodiscard]] std::string toHash(const std::filesystem::directory_entry& file) const;

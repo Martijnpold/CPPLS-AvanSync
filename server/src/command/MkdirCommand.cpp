@@ -6,7 +6,7 @@
 namespace fs = std::filesystem;
 
 namespace avansync {
-    void MkdirCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void MkdirCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             std::string parentPath {"./storage/" + connection.getIO().readLine().getContent()};
             std::string newPath {connection.getIO().readLine().getContent()};

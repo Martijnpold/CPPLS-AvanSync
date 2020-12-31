@@ -8,6 +8,7 @@
 #include "PutCommand.h"
 #include "QuitCommand.h"
 #include "RenCommand.h"
+#include "SyncCommand.h"
 
 namespace avansync {
     ClientCommandRepository::ClientCommandRepository() {
@@ -19,5 +20,6 @@ namespace avansync {
         registerCommand<DelCommand>("DEL");
         registerCommand<MkdirCommand>("MKDIR");
         registerCommand<QuitCommand>("QUIT");
+        registerCommand<SyncCommand>("SYNC");
     }
 } // namespace avansync

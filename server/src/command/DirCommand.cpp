@@ -5,7 +5,7 @@
 namespace fs = std::filesystem;
 
 namespace avansync {
-    void DirCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void DirCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             std::string path {"./storage/" + connection.getIO().readLine().getContent()};
 

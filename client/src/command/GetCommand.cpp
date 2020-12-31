@@ -3,7 +3,7 @@
 #include <util/ErrorUtil.h>
 
 namespace avansync {
-    void GetCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void GetCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             connection.getIO().writeString("GET");
             std::string path {systemIO.readLine().getContent()};

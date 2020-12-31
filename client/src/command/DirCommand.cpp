@@ -1,7 +1,7 @@
 #include "DirCommand.h"
 
 namespace avansync {
-    void DirCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void DirCommand::execute(IO& systemIO, IConnection& connection) const {
         connection.getIO().writeString("DIR");
         connection.getIO().writeLine(systemIO.readLine());
 

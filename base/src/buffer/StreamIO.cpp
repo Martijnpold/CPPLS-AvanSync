@@ -4,18 +4,18 @@
 #include <fstream>
 
 namespace avansync {
-    Line StreamIO::readLine() const {
+    Line StreamIO::readLine() {
         std::string data;
         getline(_stream, data);
         data.erase(data.end() - 1);
         return Line {data};
     }
 
-    void StreamIO::writeLine(const Line& data) const {
+    void StreamIO::writeLine(const Line& data) {
         _stream << data << LINE_BREAK;
     }
 
-    void StreamIO::readFile(const std::string& path, int bytes) const {
+    void StreamIO::readFile(const std::string& path, int bytes) {
         std::filesystem::path fsPath {path};
         if (fsPath.has_parent_path() && !std::filesystem::exists(fsPath.parent_path())) {
             std::filesystem::create_directories(fsPath.parent_path());
@@ -33,7 +33,7 @@ namespace avansync {
         }
     }
 
-    void StreamIO::writeFile(const std::string& path) const {
+    void StreamIO::writeFile(const std::string& path) {
         uintmax_t fileSize {std::filesystem::file_size(path)};
         std::ifstream file {path};
         try {

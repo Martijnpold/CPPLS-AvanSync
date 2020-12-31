@@ -6,7 +6,7 @@
 namespace fs = std::filesystem;
 
 namespace avansync {
-    void PutCommand::execute(const IO& systemIO, IConnection& connection) const {
+    void PutCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             connection.getIO().writeString("PUT");
             std::string path {systemIO.readLine().getContent()};

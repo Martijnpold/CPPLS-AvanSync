@@ -5,6 +5,6 @@
 namespace avansync {
     class InfoCommand : public ICommand {
     public:
-        void execute(const IO& systemIO, IConnection& connection) const override;
+        void execute(IO& systemIO, IConnection& connection) const override;
     };
 } // namespace avansync
