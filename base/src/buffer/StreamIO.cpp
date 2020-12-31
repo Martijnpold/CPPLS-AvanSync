@@ -16,6 +16,11 @@ namespace avansync {
     }
 
     void StreamIO::readFile(const std::string& path, int bytes) const {
+        std::filesystem::path fsPath {path};
+        if (fsPath.has_parent_path() && !std::filesystem::exists(fsPath.parent_path())) {
+            std::filesystem::create_directories(fsPath.parent_path());
+        }
+
         std::ofstream file {path};
         try {
             std::vector<char> buff(bytes, 0);

@@ -8,7 +8,7 @@ namespace avansync {
         if (ec == std::errc::not_a_directory)
             return "Not a directory";
         if (ec == std::errc::no_such_file_or_directory)
-            return "No such file";
+            return "No such file or directory";
         if (ec == std::errc::no_space_on_device)
             return "Not enough disk space";
         if (ec == std::errc::read_only_file_system)

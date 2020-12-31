@@ -16,7 +16,10 @@ namespace avansync {
             connection.getIO().writeString(std::to_string(hashes.size()));
             for (const auto& hash : hashes)
                 connection.getIO().writeString(hash);
-        } catch (const std::system_error& e) { systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)}); }
+        } catch (const std::system_error& e) {
+            systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)});
+            connection.getIO().writeException(std::logic_error {ErrorUtil::getReason(e)});
+        }
     }
 
     std::string DirCommand::toHash(const fs::directory_entry& file) const {

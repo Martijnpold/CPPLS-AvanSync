@@ -32,7 +32,7 @@ int main() {
 
             for (;;) {
                 Line request = connection.getIO().readLine();
-                systemIO.writeLine(request);
+                systemIO.writeString("Received " + request.getContent());
 
                 try {
                     if (commands.hasCommand(request.getContent())) {

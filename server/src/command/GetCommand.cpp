@@ -1,7 +1,6 @@
 #include "GetCommand.h"
 
 #include <filesystem>
-#include <fstream>
 #include <util/ErrorUtil.h>
 
 namespace fs = std::filesystem;
@@ -9,8 +8,15 @@ namespace fs = std::filesystem;
 namespace avansync {
     void GetCommand::execute(const IO& systemIO, const IConnection& connection) const {
         try {
-            std::ifstream file {connection.getIO().readLine().getContent()};
-
-        } catch (const std::system_error& e) { systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)}); }
+            std::string rawPath {"./storage/" + connection.getIO().readLine().getContent()};
+            fs::path path {rawPath};
+            uintmax_t fileSize {fs::file_size(path)};
+            systemIO.writeString("Transmitting " + std::to_string(fileSize) + " bytes " + rawPath);
+            connection.getIO().writeString(std::to_string(fileSize));
+            connection.getIO().writeFile(rawPath);
+        } catch (const std::system_error& e) {
+            systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)});
+            connection.getIO().writeException(std::logic_error {ErrorUtil::getReason(e)});
+        }
     }
 } // namespace avansync
