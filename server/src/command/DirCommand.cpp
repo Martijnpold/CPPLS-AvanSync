@@ -1,18 +1,20 @@
+#include <util/ErrorUtil.h>
 #include "DirCommand.h"
 
 namespace fs = std::filesystem;
 
 namespace avansync {
     void DirCommand::execute(const IO &systemIO, const IConnection &connection) const {
-        std::string path{"./storage/" + connection.getIO().readLine().getContent()};
-
         try {
+            std::string path{"./storage/" + connection.getIO().readLine().getContent()};
+
             std::vector<std::string> hashes{};
             for (const auto &file : fs::directory_iterator(path)) hashes.push_back(toHash(file));
 
             connection.getIO().writeString(std::to_string(hashes.size()));
             for (const auto &hash : hashes) connection.getIO().writeString(hash);
-        } catch (const fs::filesystem_error &e) {
+        } catch (const std::system_error &e) {
+            systemIO.writeException(std::logic_error{ErrorUtil::getReason(e)});
         }
     }
 

@@ -6,7 +6,6 @@
 #include "command/ServerCommandRepository.h"
 #include <connection/Connection.h>
 #include <buffer/SystemIO.h>
-#include <util/ErrorUtil.h>
 
 using namespace asio::ip;
 using namespace avansync;
@@ -38,9 +37,8 @@ int main() {
                     if (commands.hasCommand(request.getContent())) {
                         commands.execute(request.getContent(), systemIO, connection);
                     }
-                } catch (const std::system_error &e) {
-                    systemIO.writeException(std::logic_error{ErrorUtil::getReason(e)});
                 } catch (const std::exception &e) {
+                    systemIO.writeString("Uncaught exception:");
                     systemIO.writeException(e);
                 }
             }
