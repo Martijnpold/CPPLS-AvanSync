@@ -11,6 +11,8 @@ namespace avansync {
     public:
         [[nodiscard]] Line readLine() override;
 
+        [[nodiscard]] Line getReadLine(int index) const;
+
         void writeLine(const Line& data) override;
 
         void readFile(const std::string& path, int bytes) override;
@@ -22,5 +24,9 @@ namespace avansync {
         [[nodiscard]] std::vector<Line> getReadLines() const;
 
         void addReadLine(const Line& line);
+
+        [[nodiscard]] int getWrittenLineCount() const;
+
+        int getReadLineCount() const;
     };
 } // namespace avansync

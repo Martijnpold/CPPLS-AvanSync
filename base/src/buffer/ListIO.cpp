@@ -1,6 +1,5 @@
 #include "ListIO.h"
 
-#include <iostream>
 #include <stdexcept>
 
 namespace avansync {
@@ -10,6 +9,12 @@ namespace avansync {
         Line l {_readLines[0]};
         _readLines.erase(_readLines.begin());
         return l;
+    }
+
+    Line ListIO::getReadLine(int index) const {
+        if (_readLines.size() >= index)
+            throw std::logic_error {"Index out of range"};
+        return _readLines[index];
     }
 
     void ListIO::writeLine(const Line& data) {
@@ -34,5 +39,13 @@ namespace avansync {
 
     void ListIO::addReadLine(const Line& line) {
         _readLines.push_back(line);
+    }
+
+    int ListIO::getWrittenLineCount() const {
+        return _writeLines.size();
+    }
+
+    int ListIO::getReadLineCount() const {
+        return _readLines.size();
     }
 } // namespace avansync
