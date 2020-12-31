@@ -1,7 +1,7 @@
 #include "Connection.h"
 
 namespace avansync {
-    IO &Connection::getIO() const {
+    IO& Connection::getIO() const {
         return *_streamIO;
     }
 
@@ -12,4 +12,4 @@ namespace avansync {
     bool Connection::isOpen() const {
         return (*_stream).operator bool();
     }
-}
+} // namespace avansync

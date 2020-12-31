@@ -6,6 +6,6 @@
 namespace avansync {
     class ErrorUtil {
     public:
-        static std::string getReason(const std::system_error &e);
+        static std::string getReason(const std::system_error& e);
     };
-}
+} // namespace avansync

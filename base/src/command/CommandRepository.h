@@ -1,8 +1,9 @@
 #pragma once
 
+#include "ICommand.h"
+
 #include <map>
 #include <memory>
-#include "ICommand.h"
 
 namespace avansync {
     class CommandRepository {
@@ -11,12 +12,12 @@ namespace avansync {
 
     public:
         template<typename Command, typename... Args>
-        void registerCommand(const std::string &command, const Args &&... args) {
+        void registerCommand(const std::string& command, const Args&&... args) {
             _commands[command] = std::make_unique<Command>(args...);
         }
 
-        [[nodiscard]] bool hasCommand(const std::string &command) const;
+        [[nodiscard]] bool hasCommand(const std::string& command) const;
 
-        void execute(const std::string &command, const IO &systemIO, const IConnection &connection);
+        void execute(const std::string& command, const IO& systemIO, const IConnection& connection);
     };
-}
+} // namespace avansync
