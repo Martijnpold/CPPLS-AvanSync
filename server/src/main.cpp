@@ -30,7 +30,7 @@ int main() {
             Connection connection {client};
             connection.getIO().writeString("Welcome to AvanSync server 1.0");
 
-            for (;;) {
+            while (connection.isOpen()) {
                 Line request = connection.getIO().readLine();
                 systemIO.writeString("Received " + request.getContent());
 

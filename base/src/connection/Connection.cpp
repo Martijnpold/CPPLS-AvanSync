@@ -5,11 +5,12 @@ namespace avansync {
         return *_streamIO;
     }
 
-    void Connection::close() const {
+    void Connection::close() {
+        _closed = true;
         _stream->close();
     }
 
     bool Connection::isOpen() const {
-        return (*_stream).operator bool();
+        return !_closed && (*_stream).operator bool();
     }
 } // namespace avansync

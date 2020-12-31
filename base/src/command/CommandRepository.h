@@ -18,6 +18,6 @@ namespace avansync {
 
         [[nodiscard]] bool hasCommand(const std::string& command) const;
 
-        void execute(const std::string& command, const IO& systemIO, const IConnection& connection);
+        void execute(const std::string& command, const IO& systemIO, IConnection& connection);
     };
 } // namespace avansync

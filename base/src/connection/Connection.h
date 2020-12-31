@@ -12,6 +12,7 @@ namespace avansync {
     private:
         std::unique_ptr<tcp::iostream> _stream;
         std::unique_ptr<StreamIO> _streamIO;
+        bool _closed {false};
 
     public:
         explicit Connection(std::unique_ptr<tcp::iostream>& stream)
@@ -20,7 +21,7 @@ namespace avansync {
 
         [[nodiscard]] IO& getIO() const override;
 
-        void close() const override;
+        void close() override;
 
         [[nodiscard]] bool isOpen() const override;
     };

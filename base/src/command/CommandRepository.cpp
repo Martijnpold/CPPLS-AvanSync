@@ -5,7 +5,7 @@ namespace avansync {
         return _commands.find(command) != _commands.end();
     }
 
-    void CommandRepository::execute(const std::string& command, const IO& systemIO, const IConnection& connection) {
+    void CommandRepository::execute(const std::string& command, const IO& systemIO, IConnection& connection) {
         if (hasCommand(command)) {
             _commands[command]->execute(systemIO, connection);
         }

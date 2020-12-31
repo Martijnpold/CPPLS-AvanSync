@@ -6,11 +6,12 @@
 namespace fs = std::filesystem;
 
 namespace avansync {
-    void GetCommand::execute(const IO& systemIO, const IConnection& connection) const {
+    void GetCommand::execute(const IO& systemIO, IConnection& connection) const {
         try {
             std::string rawPath {"./storage/" + connection.getIO().readLine().getContent()};
             fs::path path {rawPath};
             uintmax_t fileSize {fs::file_size(path)};
+
             systemIO.writeString("Transmitting " + std::to_string(fileSize) + " bytes " + rawPath);
             connection.getIO().writeString(std::to_string(fileSize));
             connection.getIO().writeFile(rawPath);
