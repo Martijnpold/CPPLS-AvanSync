@@ -7,7 +7,8 @@ namespace avansync {
     Line StreamIO::readLine() {
         std::string data;
         getline(_stream, data);
-        data.erase(data.end() - 1);
+        if (data.length() > 0)
+            data.erase(data.end() - 1);
         return Line {data};
     }
 

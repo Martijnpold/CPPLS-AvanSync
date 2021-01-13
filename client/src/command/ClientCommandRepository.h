@@ -7,4 +7,4 @@ namespace avansync::client {
     public:
         ClientCommandRepository();
     };
-} // namespace avansync
+} // namespace avansync::client

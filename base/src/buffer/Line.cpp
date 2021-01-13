@@ -1,5 +1,7 @@
 #include "Line.h"
 
+#include <utility>
+
 namespace avansync {
     Line::Line(std::string content) : _content {std::move(content)} {
     }

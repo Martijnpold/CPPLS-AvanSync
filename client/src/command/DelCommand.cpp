@@ -6,4 +6,4 @@ namespace avansync::client {
         connection.getIO().writeString(systemIO.readLine().getContent());
         systemIO.writeLine(connection.getIO().readLine());
     }
-} // namespace avansync
+} // namespace avansync::client

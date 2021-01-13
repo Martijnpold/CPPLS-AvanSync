@@ -1,5 +1,7 @@
 #include "FileUtil.h"
 
+#include <sstream>
+
 namespace avansync {
     std::vector<std::string> FileUtil::splitHash(const std::string& fileHash) {
         std::stringstream hashstream {fileHash};
@@ -22,7 +24,7 @@ namespace avansync {
         if (file.is_other())
             hash << "*";
         hash << HASH_SPLITTER;
-        std::string name {file.path().filename()};
+        std::string name {file.path().filename().string()};
         hash << name;
         hash << HASH_SPLITTER;
         std::time_t stamp = to_time_t(file.last_write_time());
@@ -47,7 +49,7 @@ namespace avansync {
 
     time_t FileUtil::getDateFromHash(const std::string& hash) {
         struct tm timeDate {};
-        strptime(splitHash(hash)[2].c_str(), HASH_DATE_FORMAT.c_str(), &timeDate);
+        //strptime(splitHash(hash)[2].c_str(), HASH_DATE_FORMAT.c_str(), &timeDate);
         time_t rawtime {mktime(&timeDate)};
         return rawtime;
     }

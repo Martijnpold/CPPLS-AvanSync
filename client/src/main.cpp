@@ -5,6 +5,7 @@
 #include <command/CommandRepository.h>
 #include <connection/Connection.h>
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -13,6 +14,8 @@
 using namespace avansync;
 using namespace avansync::client;
 using namespace asio::ip;
+
+namespace fs = std::filesystem;
 
 int main() {
     try {
@@ -27,6 +30,7 @@ int main() {
         if (!server)
             throw std::runtime_error("could not connect to server");
         Connection connection {server};
+        fs::create_directories(connection.basedir());
         systemIO.writeLine(connection.getIO().readLine());
 
         while (connection.isOpen()) {

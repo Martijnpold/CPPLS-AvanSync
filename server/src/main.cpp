@@ -5,8 +5,11 @@
 #include <command/CommandRepository.h>
 #include <connection/Connection.h>
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <string>
+
+namespace fs = std::filesystem;
 
 using namespace asio::ip;
 using namespace avansync;
@@ -29,6 +32,7 @@ int main() {
             std::cerr << "client connected from " << client->socket().local_endpoint() << std::endl;
 
             Connection connection {client};
+            fs::create_directories(connection.basedir());
             connection.getIO().writeString("Welcome to AvanSync server 1.0");
 
             while (connection.isOpen()) {

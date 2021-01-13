@@ -20,4 +20,4 @@ namespace avansync::client {
             connection.getIO().readFile({connection.basedir() + path}, fileSize);
         } catch (const std::system_error& e) { systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)}); }
     }
-} // namespace avansync
+} // namespace avansync::client
