@@ -11,8 +11,8 @@ TEST_CASE("RenCommand should rename dir correctly", "[RenCommand]") {
     //Setup
     TestConnection conn {};
     TestIO sysIO {};
-    std::string dirName1 {"testDir1"};
-    std::string dirName2 {"testDir2"};
+    std::string dirName1 {"testDór1"};
+    std::string dirName2 {"téstDir2"};
 
     TestFileUtil::deleteFile(conn.basedir());
     TestFileUtil::createDir(conn.basedir());

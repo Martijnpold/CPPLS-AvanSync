@@ -30,7 +30,12 @@ namespace avansync {
         [[nodiscard]] static bool isNewer(const std::string& hash1, const std::string& hash2);
         [[nodiscard]] static uintmax_t getSize(const std::string& path);
 
+#ifdef _WIN32
         static std::wstring encodeName(const std::string& source);
         static std::string decodeName(const std::wstring& source);
+#else
+        static std::string encodeName(const std::string& source);
+        static std::string decodeName(const std::wstring& source);
+#endif
     };
 } // namespace avansync

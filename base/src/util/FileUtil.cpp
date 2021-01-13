@@ -24,7 +24,7 @@ namespace avansync {
         if (file.is_other())
             hash << "*";
         hash << HASH_SPLITTER;
-        hash << FileUtil::decodeName(file.path().filename().wstring());
+        hash << decodeName(file.path().filename().wstring());
         hash << HASH_SPLITTER;
         std::time_t stamp = to_time_t(file.last_write_time());
         std::tm time = *std::localtime(&stamp);
@@ -54,16 +54,25 @@ namespace avansync {
         return getDateFromHash(hash1) > getDateFromHash(hash2);
     }
 
+#ifdef _WIN32
     std::wstring FileUtil::encodeName(const std::string& source) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
         return convert.from_bytes(source);
     }
 
-    std::string FileUtil::decodeName(const std::wstring& source)
-    {
+    std::string FileUtil::decodeName(const std::wstring& source) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
         return convert.to_bytes(source);
     }
+#else
+    std::string FileUtil::encodeName(const std::string& source) {
+        return source;
+    }
+
+    std::string FileUtil::decodeName(const std::wstring& source) {
+        return {source.begin(), source.end()};
+    }
+#endif
 
     uintmax_t FileUtil::getSize(const std::string& path) {
         return fs::file_size(encodeName(path));

@@ -11,7 +11,7 @@ TEST_CASE("GetCommand should return file correctly", "[GetCommand]") {
     //Setup
     TestConnection conn {};
     TestIO sysIO {};
-    std::string fileName {"testFile"};
+    std::string fileName {"testFílé"};
     int fileSize {5};
 
     TestFileUtil::deleteFile(conn.basedir());

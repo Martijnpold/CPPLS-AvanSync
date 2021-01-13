@@ -12,9 +12,9 @@ TEST_CASE("DirCommand should print filled directory content correctly", "[DirCom
     TestConnection conn {};
     ListIO sysIO {};
     std::string dirName {"listDir"};
-    std::string fileName1 {"testFile1.txt"};
-    std::string fileName2 {"testFile2.txt"};
-    std::string fileName3 {"testFile3.txt"};
+    std::string fileName1 {"téstFile1.txt"};
+    std::string fileName2 {"testFíle2.txt"};
+    std::string fileName3 {"tástFile3.txt"};
 
     TestFileUtil::deleteFile(conn.basedir());
     TestFileUtil::createDir(conn.basedir() + dirName);

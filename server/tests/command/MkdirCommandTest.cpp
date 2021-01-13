@@ -11,7 +11,7 @@ TEST_CASE("MkdirCommand should make dir correctly", "[MkdirCommand]") {
     //Setup
     TestConnection conn {};
     TestIO sysIO {};
-    std::string dirName {"testDir"};
+    std::string dirName {"téstDir"};
 
     TestFileUtil::deleteFile(conn.basedir());
     TestFileUtil::createDir(conn.basedir());

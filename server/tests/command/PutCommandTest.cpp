@@ -11,7 +11,7 @@ TEST_CASE("PutCommand should return info correctly", "[PutCommand]") {
     //Setup
     TestConnection conn {};
     TestIO sysIO {};
-    std::string fileName {"testFile"};
+    std::string fileName {"téstFile"};
     int fileSize {5};
 
     PutCommand cmd {};

@@ -11,7 +11,7 @@ TEST_CASE("DelCommand should delete directory correctly", "[DelCommand]") {
     //Setup
     TestConnection conn {};
     ListIO sysIO {};
-    std::string fileName {"testDirectory"};
+    std::string fileName {"téstDirectory"};
 
     TestFileUtil::deleteFile(conn.basedir());
     TestFileUtil::createDir(conn.basedir() + fileName);
