@@ -29,7 +29,7 @@ namespace avansync::client {
 
         //Get all local files
         std::vector<fs::directory_entry> localFiles {};
-        for (const auto& file : fs::directory_iterator(connection.basedir() + path))
+        for (const auto& file : fs::directory_iterator(FileUtil::encodeName(connection.basedir()) + FileUtil::encodeName(path)))
             localFiles.push_back(file);
 
         //Bundle local hashes
@@ -51,7 +51,7 @@ namespace avansync::client {
                 //File does exist locally
                 std::string localType = FileUtil::getTypeFromHash(*localHash);
 
-                if (remoteType != localType || FileUtil::isNewer(*localHash, remoteHash)) {
+                if (remoteType != localType || FileUtil::getDateFromHash(*localHash) != FileUtil::getDateFromHash(remoteHash)) {
                     //File is different or newer compared to remote
                     if (localType != "D") {
                         ListIO putIO {};

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <codecvt>
 #include <filesystem>
 #include <string>
 #include <vector>
@@ -25,7 +26,11 @@ namespace avansync {
         [[nodiscard]] static std::string generateHash(const fs::directory_entry& file);
         [[nodiscard]] static std::string getTypeFromHash(const std::string& hash);
         [[nodiscard]] static std::string getFileNameFromHash(const std::string& hash);
-        [[nodiscard]] static time_t getDateFromHash(const std::string& hash);
+        [[nodiscard]] static std::string getDateFromHash(const std::string& hash);
         [[nodiscard]] static bool isNewer(const std::string& hash1, const std::string& hash2);
+        [[nodiscard]] static uintmax_t getSize(const std::string& path);
+
+        static std::wstring encodeName(const std::string& source);
+        static std::string decodeName(const std::wstring& source);
     };
 } // namespace avansync

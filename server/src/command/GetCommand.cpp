@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <util/ErrorUtil.h>
+#include <util/FileUtil.h>
 
 namespace fs = std::filesystem;
 
@@ -9,8 +10,7 @@ namespace avansync::server {
     void GetCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             std::string rawPath {connection.basedir() + connection.getIO().readLine().getContent()};
-            fs::path path {rawPath};
-            uintmax_t fileSize {fs::file_size(path)};
+            uintmax_t fileSize {fs::file_size(FileUtil::encodeName(rawPath))};
 
             systemIO.writeString("Transmitting " + std::to_string(fileSize) + " bytes " + rawPath);
             connection.getIO().writeString(std::to_string(fileSize));

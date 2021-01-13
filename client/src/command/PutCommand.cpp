@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <util/ErrorUtil.h>
+#include <util/FileUtil.h>
 
 namespace fs = std::filesystem;
 
@@ -11,7 +12,7 @@ namespace avansync::client {
             connection.getIO().writeString("PUT");
             std::string path {systemIO.readLine().getContent()};
             std::string rawPath {connection.basedir() + path};
-            uintmax_t fileSize {fs::file_size(rawPath)};
+            uintmax_t fileSize {FileUtil::getSize(rawPath)};
 
             systemIO.writeString("Transmitting " + std::to_string(fileSize) + " bytes " + rawPath);
 

@@ -20,7 +20,8 @@ namespace fs = std::filesystem;
 int main() {
     try {
         const char* server_address {"localhost"};
-        const char* server_port {"12345"};
+//        const char* server_address {"minecraft.polderman-it.nl"};
+        const char* server_port {"25567"};
         const char* prompt {"avansync> "};
 
         CommandRepository commands = ClientCommandRepository {};

@@ -17,7 +17,7 @@ namespace avansync::client {
 
             int fileSize = std::stoi(response.getContent());
             systemIO.writeString("Saving " + std::to_string(fileSize) + " bytes " + connection.basedir() + path);
-            connection.getIO().readFile({connection.basedir() + path}, fileSize);
+            connection.getIO().readFile(connection.basedir() + path, fileSize);
         } catch (const std::system_error& e) { systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)}); }
     }
 } // namespace avansync::client

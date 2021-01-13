@@ -11,7 +11,7 @@ namespace avansync::server {
             std::string path {connection.basedir() + connection.getIO().readLine().getContent()};
 
             std::vector<std::string> hashes {};
-            for (const auto& file : fs::directory_iterator(path))
+            for (const auto& file : fs::directory_iterator(FileUtil::encodeName(path)))
                 hashes.push_back(FileUtil::generateHash(file));
 
             connection.getIO().writeString(std::to_string(hashes.size()));

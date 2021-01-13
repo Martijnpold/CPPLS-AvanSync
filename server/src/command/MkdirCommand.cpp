@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <util/ErrorUtil.h>
+#include <util/FileUtil.h>
 
 namespace fs = std::filesystem;
 
@@ -10,7 +11,7 @@ namespace avansync::server {
         try {
             std::string parentPath {connection.basedir() + connection.getIO().readLine().getContent()};
             std::string newPath {connection.getIO().readLine().getContent()};
-            fs::create_directories(parentPath + "/" + newPath);
+            fs::create_directories(FileUtil::encodeName(parentPath + "/" + newPath));
             connection.getIO().writeString("OK");
         } catch (const std::system_error& e) {
             systemIO.writeException(std::logic_error {ErrorUtil::getReason(e)});
