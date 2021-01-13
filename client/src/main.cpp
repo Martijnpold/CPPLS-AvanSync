@@ -11,6 +11,7 @@
 #include <util/ErrorUtil.h>
 
 using namespace avansync;
+using namespace avansync::client;
 using namespace asio::ip;
 
 int main() {

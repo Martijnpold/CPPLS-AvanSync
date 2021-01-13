@@ -2,7 +2,7 @@
 
 #include <command/ICommand.h>
 
-namespace avansync {
+namespace avansync::server {
     class MkdirCommand : public ICommand {
     public:
         void execute(IO& systemIO, IConnection& connection) const override;

@@ -1,5 +1,12 @@
-add_executable(server_exec main.cpp command/InfoCommand.cpp command/InfoCommand.h command/ServerCommandRepository.cpp command/ServerCommandRepository.h command/DirCommand.cpp command/DirCommand.h command/GetCommand.cpp command/GetCommand.h command/PutCommand.cpp command/PutCommand.h command/RenCommand.cpp command/RenCommand.h command/DelCommand.cpp command/DelCommand.h command/MkdirCommand.cpp command/MkdirCommand.h command/QuitCommand.cpp command/QuitCommand.h)
+file(GLOB_RECURSE SERVER_SOURCES "*.cpp")
+list(REMOVE_ITEM SERVER_SOURCES "main.cpp")
 
-find_package(Threads REQUIRED)
-target_link_libraries(server_exec PRIVATE base_lib ${CMAKE_THREAD_LIBS_INIT})
-target_include_directories(server_exec PRIVATE src)
+add_library(server_lib STATIC ${SERVER_SOURCES})
+target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(server_lib PUBLIC base_lib)
+
+add_executable(server_exec main.cpp)
+
+target_link_libraries(server_exec
+        PUBLIC server_lib
+        Catch2::Catch)

@@ -1,6 +1,6 @@
 #include "MkdirCommand.h"
 
-namespace avansync {
+namespace avansync::client {
     void MkdirCommand::execute(IO& systemIO, IConnection& connection) const {
         connection.getIO().writeString("MKDIR");
         connection.getIO().writeLine(systemIO.readLine());

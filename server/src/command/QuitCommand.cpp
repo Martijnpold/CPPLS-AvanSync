@@ -1,6 +1,6 @@
 #include "QuitCommand.h"
 
-namespace avansync {
+namespace avansync::server {
     void QuitCommand::execute(IO& systemIO, IConnection& connection) const {
         connection.close();
     }

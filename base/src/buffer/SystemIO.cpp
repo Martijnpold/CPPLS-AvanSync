@@ -11,7 +11,7 @@ namespace avansync {
     }
 
     void SystemIO::writeLine(const Line& data) {
-        std::wcout << data << std::endl;
+        std::cout << data << std::endl;
     }
 
     void SystemIO::readFile(const std::string& path, int bytes) {

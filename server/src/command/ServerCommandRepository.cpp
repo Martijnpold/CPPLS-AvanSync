@@ -9,7 +9,7 @@
 #include "QuitCommand.h"
 #include "RenCommand.h"
 
-namespace avansync {
+namespace avansync::server {
     ServerCommandRepository::ServerCommandRepository() {
         registerCommand<InfoCommand>("INFO");
         registerCommand<DirCommand>("DIR");

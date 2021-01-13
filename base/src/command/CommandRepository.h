@@ -12,7 +12,7 @@ namespace avansync {
 
     public:
         template<typename Command, typename... Args> void registerCommand(const std::string& command, Args&&... args) {
-            _commands[command] = std::make_unique<Command>(std::move(args...));
+            _commands[command] = std::make_unique<Command>(args...);
         }
 
         [[nodiscard]] bool hasCommand(const std::string& command) const;

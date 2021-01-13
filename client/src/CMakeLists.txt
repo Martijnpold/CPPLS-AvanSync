@@ -1,5 +1,12 @@
-add_executable(client_exec main.cpp command/InfoCommand.cpp command/InfoCommand.h command/ClientCommandRepository.cpp command/ClientCommandRepository.h command/DirCommand.cpp command/DirCommand.h command/GetCommand.cpp command/GetCommand.h command/PutCommand.cpp command/PutCommand.h command/RenCommand.cpp command/DelCommand.cpp command/MkdirCommand.cpp command/QuitCommand.cpp command/SyncCommand.cpp command/SyncCommand.h)
+file(GLOB_RECURSE CLIENT_SOURCES "*.cpp")
+list(REMOVE_ITEM CLIENT_SOURCES "main.cpp")
 
-find_package(Threads REQUIRED)
-target_link_libraries(client_exec PRIVATE base_lib ${CMAKE_THREAD_LIBS_INIT})
-target_include_directories(client_exec PRIVATE src)
+add_library(client_lib STATIC ${CLIENT_SOURCES})
+target_include_directories(client_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(client_lib PUBLIC base_lib)
+
+add_executable(client_exec main.cpp)
+
+target_link_libraries(client_exec
+        PUBLIC client_lib
+        Catch2::Catch)

@@ -3,8 +3,6 @@
 #include "../util/TestConnection.h"
 #include "catch.hpp"
 
-#include <command/CommandRepository.h>
-
 using namespace avansync;
 
 TEST_CASE("Should execute correctly", "[DelCommand]") {
@@ -15,7 +13,7 @@ TEST_CASE("Should execute correctly", "[DelCommand]") {
     ListIO sysIO {};
 
     //Execute
-//    delCmd.execute();
+    delCmd.execute(sysIO, conn);
 
     //Test
 }

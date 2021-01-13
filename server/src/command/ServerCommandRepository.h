@@ -2,7 +2,7 @@
 
 #include <command/CommandRepository.h>
 
-namespace avansync {
+namespace avansync::server {
     class ServerCommandRepository : public CommandRepository {
     public:
         ServerCommandRepository();

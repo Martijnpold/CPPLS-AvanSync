@@ -2,7 +2,7 @@
 
 #include <util/ErrorUtil.h>
 
-namespace avansync {
+namespace avansync::client {
     void GetCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
             connection.getIO().writeString("GET");

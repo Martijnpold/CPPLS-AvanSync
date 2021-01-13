@@ -6,7 +6,7 @@
 
 namespace fs = std::filesystem;
 
-namespace avansync {
+namespace avansync::client {
     void SyncCommand::execute(IO& systemIO, avansync::IConnection& connection) const {
         int deleted {};
         int updated {};

@@ -3,14 +3,14 @@
 #include "DelCommand.h"
 #include "DirCommand.h"
 #include "GetCommand.h"
-#include "InfoCommand.h"
+#include "InfoCommandTest.h"
 #include "MkdirCommand.h"
 #include "PutCommand.h"
 #include "QuitCommand.h"
 #include "RenCommand.h"
 #include "SyncCommand.h"
 
-namespace avansync {
+namespace avansync::client {
     ClientCommandRepository::ClientCommandRepository() {
         registerCommand<InfoCommand>("INFO");
         registerCommand<DirCommand>("DIR");

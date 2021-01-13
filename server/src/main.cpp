@@ -10,6 +10,7 @@
 
 using namespace asio::ip;
 using namespace avansync;
+using namespace avansync::server;
 
 int main() {
     try {

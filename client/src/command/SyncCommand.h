@@ -8,7 +8,7 @@
 
 #include <command/ICommand.h>
 
-namespace avansync {
+namespace avansync::client {
     class SyncCommand : public ICommand {
     private:
         DirCommand dirCommand {};
