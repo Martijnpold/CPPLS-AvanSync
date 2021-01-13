@@ -17,9 +17,10 @@ namespace avansync::client {
         PutCommand putCommand {};
         MkdirCommand mkdirCommand {};
 
-        void evaluateFolder(IO& systemIO, avansync::IConnection& connection, const std::string& path, int& deleted, int& updated) const;
+        void evaluateFolder(IO& systemIO, avansync::IConnection& connection, const std::string& path, int& deleted,
+                            int& updated) const;
 
     public:
         void execute(IO& systemIO, IConnection& connection) const override;
     };
-} // namespace avansync
+} // namespace avansync::client

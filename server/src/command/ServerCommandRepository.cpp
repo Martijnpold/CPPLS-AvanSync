@@ -20,4 +20,4 @@ namespace avansync::server {
         registerCommand<MkdirCommand>("MKDIR");
         registerCommand<QuitCommand>("QUIT");
     }
-} // namespace avansync
+} // namespace avansync::server

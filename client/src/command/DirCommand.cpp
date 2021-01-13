@@ -16,4 +16,4 @@ namespace avansync::client {
             systemIO.writeLine(connection.getIO().readLine());
         }
     }
-} // namespace avansync
+} // namespace avansync::client

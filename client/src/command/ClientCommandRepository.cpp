@@ -22,4 +22,4 @@ namespace avansync::client {
         registerCommand<QuitCommand>("QUIT");
         registerCommand<SyncCommand>("SYNC");
     }
-} // namespace avansync
+} // namespace avansync::client

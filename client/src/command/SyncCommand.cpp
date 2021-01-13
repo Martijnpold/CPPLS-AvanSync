@@ -100,4 +100,4 @@ namespace avansync::client {
             }
         });
     }
-} // namespace avansync
+} // namespace avansync::client

@@ -5,4 +5,4 @@ namespace avansync::client {
         connection.getIO().writeString("QUIT");
         connection.close();
     }
-} // namespace avansync
+} // namespace avansync::client

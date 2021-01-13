@@ -22,4 +22,4 @@ namespace avansync::server {
             connection.getIO().writeException(std::logic_error {ErrorUtil::getReason(e)});
         }
     }
-} // namespace avansync
+} // namespace avansync::server

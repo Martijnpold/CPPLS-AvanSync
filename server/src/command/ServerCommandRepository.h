@@ -7,4 +7,4 @@ namespace avansync::server {
     public:
         ServerCommandRepository();
     };
-} // namespace avansync
+} // namespace avansync::server

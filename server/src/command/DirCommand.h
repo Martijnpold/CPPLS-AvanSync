@@ -8,4 +8,4 @@ namespace avansync::server {
     public:
         void execute(IO& systemIO, IConnection& connection) const override;
     };
-} // namespace avansync
+} // namespace avansync::server
