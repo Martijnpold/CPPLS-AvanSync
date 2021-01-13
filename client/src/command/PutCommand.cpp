@@ -10,7 +10,7 @@ namespace avansync {
         try {
             connection.getIO().writeString("PUT");
             std::string path {systemIO.readLine().getContent()};
-            std::string rawPath {"./storage/" + path};
+            std::string rawPath {connection.basedir() + path};
             uintmax_t fileSize {fs::file_size(rawPath)};
 
             systemIO.writeString("Transmitting " + std::to_string(fileSize) + " bytes " + rawPath);

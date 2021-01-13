@@ -1,6 +1,4 @@
-add_executable(server_tests main.cpp)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
+add_executable(server_tests main.cpp command/DelCommandTest.cpp)
 
 Include(FetchContent)
 FetchContent_Declare(Catch2
@@ -9,7 +7,7 @@ FetchContent_Declare(Catch2
 FetchContent_MakeAvailable(Catch2)
 
 target_link_libraries(server_tests
-        PUBLIC base
+        PUBLIC base_lib
         Catch2::Catch)
 
 include(CTest)

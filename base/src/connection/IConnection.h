@@ -14,5 +14,7 @@ namespace avansync {
         virtual void close() = 0;
 
         [[nodiscard]] virtual bool isOpen() const = 0;
+
+        virtual std::string basedir() const = 0;
     };
 } // namespace avansync

@@ -1,6 +1,4 @@
-add_executable(base_tests main.cpp)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
+add_executable(base_tests main.cpp buffer/LineTest.cpp buffer/ListIOTest.cpp command/CommandRepository.cpp util/TestCommand.h util/TestConnection.h)
 
 Include(FetchContent)
 FetchContent_Declare(Catch2
@@ -9,7 +7,7 @@ FetchContent_Declare(Catch2
 FetchContent_MakeAvailable(Catch2)
 
 target_link_libraries(base_tests
-        PUBLIC base
+        PUBLIC base_lib
         Catch2::Catch)
 
 include(CTest)

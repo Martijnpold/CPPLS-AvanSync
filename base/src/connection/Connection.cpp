@@ -13,4 +13,8 @@ namespace avansync {
     bool Connection::isOpen() const {
         return !_closed && (*_stream).operator bool();
     }
+
+    std::string Connection::basedir() const {
+        return "./storage/";
+    }
 } // namespace avansync

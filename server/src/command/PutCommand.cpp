@@ -5,7 +5,7 @@
 namespace avansync {
     void PutCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string path {"./storage/" + connection.getIO().readLine().getContent()};
+            std::string path {connection.basedir() + connection.getIO().readLine().getContent()};
             int fileSize {std::stoi(connection.getIO().readLine().getContent())};
 
             systemIO.writeString("Saving " + std::to_string(fileSize) + " bytes " + path);

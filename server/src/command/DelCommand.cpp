@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 namespace avansync {
     void DelCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string path {"./storage/" + connection.getIO().readLine().getContent()};
+            std::string path {connection.basedir() + connection.getIO().readLine().getContent()};
             int count = fs::remove_all(path);
             if (count > 0) {
                 connection.getIO().writeString("OK");

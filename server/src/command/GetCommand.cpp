@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 namespace avansync {
     void GetCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string rawPath {"./storage/" + connection.getIO().readLine().getContent()};
+            std::string rawPath {connection.basedir() + connection.getIO().readLine().getContent()};
             fs::path path {rawPath};
             uintmax_t fileSize {fs::file_size(path)};
 

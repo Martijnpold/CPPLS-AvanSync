@@ -11,9 +11,8 @@ namespace avansync {
         std::map<std::string, std::unique_ptr<ICommand>> _commands;
 
     public:
-        template<typename Command, typename... Args>
-        void registerCommand(const std::string& command, const Args&&... args) {
-            _commands[command] = std::make_unique<Command>(args...);
+        template<typename Command, typename... Args> void registerCommand(const std::string& command, Args&&... args) {
+            _commands[command] = std::make_unique<Command>(std::move(args...));
         }
 
         [[nodiscard]] bool hasCommand(const std::string& command) const;
