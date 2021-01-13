@@ -5,10 +5,10 @@
 namespace avansync {
     void PutCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string path {connection.basedir() + connection.getIO().readLine().getContent()};
+            std::wstring path {connection.basedir() + connection.getIO().readLine().getWContent()};
             int fileSize {std::stoi(connection.getIO().readLine().getContent())};
 
-            systemIO.writeString("Saving " + std::to_string(fileSize) + " bytes " + path);
+            systemIO.writeString(L"Saving " + std::to_wstring(fileSize) + L" bytes " + path);
             connection.getIO().readFile(path, fileSize);
             connection.getIO().writeString("OK");
         } catch (const std::system_error& e) {

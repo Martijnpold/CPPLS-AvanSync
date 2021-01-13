@@ -21,7 +21,7 @@ public:
         return true;
     }
 
-    std::string basedir() const override {
-        return "./test-storage/";
+    std::wstring basedir() const override {
+        return L"./test-storage/";
     }
 };

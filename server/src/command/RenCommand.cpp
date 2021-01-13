@@ -8,8 +8,8 @@ namespace fs = std::filesystem;
 namespace avansync {
     void RenCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string oldPath {connection.basedir() + connection.getIO().readLine().getContent()};
-            std::string newPath {connection.basedir() + connection.getIO().readLine().getContent()};
+            std::wstring oldPath {connection.basedir() + connection.getIO().readLine().getWContent()};
+            std::wstring newPath {connection.basedir() + connection.getIO().readLine().getWContent()};
             fs::rename(oldPath, newPath);
             connection.getIO().writeString("OK");
         } catch (const std::system_error& e) {

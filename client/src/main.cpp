@@ -29,7 +29,7 @@ int main() {
         systemIO.writeLine(connection.getIO().readLine());
 
         while (connection.isOpen()) {
-            std::cout << prompt;
+            std::wcout << prompt;
             std::string command = systemIO.readLine().getContent();
 
             try {

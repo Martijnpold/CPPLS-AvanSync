@@ -8,9 +8,9 @@ namespace fs = std::filesystem;
 namespace avansync {
     void DirCommand::execute(IO& systemIO, IConnection& connection) const {
         try {
-            std::string path {connection.basedir() + connection.getIO().readLine().getContent()};
+            std::wstring path {connection.basedir() + connection.getIO().readLine().getWContent()};
 
-            std::vector<std::string> hashes {};
+            std::vector<std::wstring> hashes {};
             for (const auto& file : fs::directory_iterator(path))
                 hashes.push_back(FileUtil::generateHash(file));
 

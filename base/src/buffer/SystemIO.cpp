@@ -5,8 +5,8 @@
 
 namespace avansync {
     Line SystemIO::readLine() {
-        std::string req;
-        getline(std::cin, req);
+        std::wstring req;
+        getline(std::wcin, req);
         return Line {req};
     }
 
@@ -14,11 +14,11 @@ namespace avansync {
         std::wcout << data << std::endl;
     }
 
-    void SystemIO::readFile(const std::string& path, int bytes) {
+    void SystemIO::readFile(const std::wstring& path, int bytes) {
         throw std::logic_error {"SystemIO cannot read files"};
     }
 
-    void SystemIO::writeFile(const std::string& path) {
+    void SystemIO::writeFile(const std::wstring& path) {
         throw std::logic_error {"SystemIO cannot write files"};
     }
 } // namespace avansync

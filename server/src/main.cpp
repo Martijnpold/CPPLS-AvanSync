@@ -12,16 +12,17 @@ using namespace asio::ip;
 using namespace avansync;
 
 int main() {
-    try {
-        const int server_port {12345};
+    const int server_port {12345};
 
-        CommandRepository commands = ServerCommandRepository {};
-        SystemIO systemIO {};
+    CommandRepository commands = ServerCommandRepository {};
+    SystemIO systemIO {};
 
-        asio::io_context io_context;
-        asio::ip::tcp::acceptor server {io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port)};
+    asio::io_context io_context;
+    asio::ip::tcp::acceptor server {io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port)};
 
-        for (;;) {
+    for (;;) {
+        try {
+
             std::cerr << "waiting for client to connect\n";
             auto client = std::make_unique<tcp::iostream>();
             server.accept(client->socket());
@@ -43,10 +44,10 @@ int main() {
                     systemIO.writeException(e);
                 }
             }
+
+        } catch (const std::exception& ex) {
+            std::cerr << "server: " << ex.what() << '\n';
         }
-    } catch (const std::exception& ex) {
-        std::cerr << "server: " << ex.what() << '\n';
-        return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }

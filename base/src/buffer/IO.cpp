@@ -5,6 +5,10 @@ namespace avansync {
         writeLine(Line {data});
     }
 
+    void IO::writeString(const std::wstring& data) {
+        writeLine(Line {data});
+    }
+
     void IO::writeException(const std::exception& data) {
         writeLine(Line {data});
     }

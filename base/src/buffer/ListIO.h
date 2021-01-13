@@ -14,9 +14,9 @@ namespace avansync {
 
         void writeLine(const Line& data) override;
 
-        void readFile(const std::string& path, int bytes) override;
+        void readFile(const std::wstring& path, int bytes) override;
 
-        void writeFile(const std::string& path) override;
+        void writeFile(const std::wstring& path) override;
 
         [[nodiscard]] std::vector<Line> getReadLines() const;
 

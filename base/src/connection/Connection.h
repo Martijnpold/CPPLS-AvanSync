@@ -24,6 +24,6 @@ namespace avansync {
         void close() override;
 
         [[nodiscard]] bool isOpen() const override;
-        std::string basedir() const override;
+        std::wstring basedir() const override;
     };
 } // namespace avansync

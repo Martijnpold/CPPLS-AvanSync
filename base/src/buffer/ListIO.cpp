@@ -21,11 +21,11 @@ namespace avansync {
         _writeLines.push_back(data);
     }
 
-    void ListIO::readFile(const std::string& path, int bytes) {
+    void ListIO::readFile(const std::wstring& path, int bytes) {
         throw std::logic_error {"ListIO cannot read files"};
     }
 
-    void ListIO::writeFile(const std::string& path) {
+    void ListIO::writeFile(const std::wstring& path) {
         throw std::logic_error {"ListIO cannot write files"};
     }
 
