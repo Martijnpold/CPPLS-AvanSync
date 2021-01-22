@@ -24,7 +24,7 @@ namespace avansync {
         if (file.is_other())
             hash << "*";
         hash << HASH_SPLITTER;
-        hash << decodeName(file.path().filename().wstring());
+        hash << file.path().filename().string();
         hash << HASH_SPLITTER;
         std::time_t stamp = to_time_t(file.last_write_time());
         std::tm time = *std::localtime(&stamp);

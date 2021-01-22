@@ -21,7 +21,7 @@ int main() {
     try {
 //        const char* server_address {"localhost"};
         const char* server_address {"minecraft.polderman-it.nl"};
-        const char* server_port {"25567"};
+        const char* server_port {"25568"};
         const char* prompt {"avansync> "};
 
         CommandRepository commands = ClientCommandRepository {};

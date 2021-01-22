@@ -16,7 +16,7 @@ using namespace avansync;
 using namespace avansync::server;
 
 int main() {
-    const int server_port {25567};
+    const int server_port {25568};
 
     CommandRepository commands = ServerCommandRepository {};
     SystemIO systemIO {};
